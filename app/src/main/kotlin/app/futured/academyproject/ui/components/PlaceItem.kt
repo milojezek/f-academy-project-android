@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import app.futured.academyproject.R
 import app.futured.academyproject.data.model.local.Place
 import app.futured.academyproject.tools.preview.PlacesProvider
+import app.futured.academyproject.ui.theme.Dimen
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
@@ -44,17 +45,17 @@ fun PlaceItem(
     Card(
         modifier = modifier
             .padding(
-                vertical = 6.dp,
-                horizontal = 12.dp
+                vertical = Dimen.smallPadding,
+                horizontal = Dimen.normalPadding
             )
             .fillMaxWidth()
             .clickable {
                 onClick(place.id)
             },
         shape = RoundedCornerShape(
-            corner = CornerSize(16.dp),
+            corner = CornerSize(Dimen.roundCorner),
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = Dimen.elevation),
         colors = CardDefaults.cardColors(
             containerColor = Color(227,237,239)
         )
@@ -62,7 +63,7 @@ fun PlaceItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
+                .padding(Dimen.normalPadding),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start,
         ) {
@@ -71,7 +72,7 @@ fun PlaceItem(
 
             Column(
                 modifier = Modifier
-                    .padding(6.dp),
+                    .padding(Dimen.smallPadding),
             ) {
                 Text(
                     text = place.name,
@@ -91,10 +92,10 @@ fun PlaceItem(
 private fun PlaceImage(place: Place) {
     Surface(
         modifier = Modifier
-            .padding(12.dp)
+            .padding(Dimen.normalPadding)
             .size(50.dp),
         shape = CircleShape,
-        shadowElevation = 4.dp,
+        shadowElevation = Dimen.elevation,
         color = Color.LightGray,
     ) {
         val placeImagePainter = rememberAsyncImagePainter(
