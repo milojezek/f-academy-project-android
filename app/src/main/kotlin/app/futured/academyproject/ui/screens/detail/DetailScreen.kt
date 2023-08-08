@@ -59,7 +59,9 @@ object Detail {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = "DetailScreen") },
+                    title = {
+                        Text(text = place?.name ?: "Detail")
+                            },
                     navigationIcon = {
                         IconButton(onClick = { actions.navigateBack() }) {
                             Icon(Icons.Filled.ArrowBack, contentDescription = null)

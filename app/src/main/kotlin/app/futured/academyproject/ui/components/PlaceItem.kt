@@ -38,46 +38,50 @@ import kotlinx.collections.immutable.PersistentList
 fun PlaceItem(
     place: Place,
     modifier: Modifier = Modifier,
-    onClick: (Int) -> Unit = {},
+    onClick: (Int) -> Unit,
 ) {
 
     Card(
         modifier = modifier
-            .padding(R.dimen.small_padding.dp)
+            .padding(
+                vertical = 6.dp,
+                horizontal = 12.dp
+            )
             .fillMaxWidth()
             .clickable {
                 onClick(place.id)
             },
         shape = RoundedCornerShape(
-            corner = CornerSize(R.dimen.rounded_corner.dp)
+            corner = CornerSize(16.dp),
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = R.dimen.elevation.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(227,237,239)
+        )
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(R.dimen.normal_padding.dp),
+                .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start
+            horizontalArrangement = Arrangement.Start,
         ) {
 
             PlaceImage(place = place)
 
             Column(
                 modifier = Modifier
-                    .padding(R.dimen.small_padding.dp)
+                    .padding(6.dp),
             ) {
                 Text(
                     text = place.name,
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
                 )
                 Text(
                     text = place.type,
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
                 )
             }
-
-
         }
     }
 
@@ -87,11 +91,11 @@ fun PlaceItem(
 private fun PlaceImage(place: Place) {
     Surface(
         modifier = Modifier
-            .padding(R.dimen.normal_padding.dp)
-            .size(100.dp),
+            .padding(12.dp)
+            .size(50.dp),
         shape = CircleShape,
-        shadowElevation = R.dimen.elevation.dp,
-        color = Color.LightGray
+        shadowElevation = 4.dp,
+        color = Color.LightGray,
     ) {
         val placeImagePainter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)
@@ -99,7 +103,7 @@ private fun PlaceImage(place: Place) {
                 .crossfade(true)
                 .transformations(CircleCropTransformation())
                 .build(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
 
         Image(
@@ -113,7 +117,7 @@ private fun PlaceImage(place: Place) {
 @Preview
 @Composable
 private fun PlaceItemPreview(
-    @PreviewParameter(PlacesProvider::class) places: PersistentList<Place>
+    @PreviewParameter(PlacesProvider::class) places: PersistentList<Place>,
 ) = Showcase {
     PlaceItem(place = places.first(), onClick = {})
 }

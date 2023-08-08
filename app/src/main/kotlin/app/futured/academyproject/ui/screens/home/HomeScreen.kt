@@ -86,7 +86,7 @@ object Home {
                     modifier = Modifier
                         .fillMaxSize(),
                 ) {
-                    items(items = places) { place ->
+                    items(places) { place ->
                         PlaceItem(
                             place = place,
                             onClick = actions::navigateToDetailScreen
