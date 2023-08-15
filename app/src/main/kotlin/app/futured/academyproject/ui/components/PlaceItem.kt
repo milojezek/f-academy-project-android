@@ -46,7 +46,7 @@ fun PlaceItem(
         modifier = modifier
             .padding(
                 vertical = Dimen.smallPadding,
-                horizontal = Dimen.normalPadding
+                horizontal = Dimen.bigPadding
             )
             .fillMaxWidth()
             .clickable {
